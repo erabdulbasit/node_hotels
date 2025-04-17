@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
+require('dotenv').config()
 
-const mongodbUrl = 'mongodb://127.0.0.1:27017/hotels'
+//const mongodbUrl = 'mongodb://127.0.0.1:27017/hotels'
+const mongo_URL= process.env.MONGODB_URL
 
-mongoose.connect(mongodbUrl, {
+mongoose.connect(mongo_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
@@ -13,7 +15,7 @@ db.on('connected', () => {
     console.log('Connected to mongodb server.')
 })
 
-db.on("error", () => {
+db.on("error", (err) => {
     console.log('MongoDb connection error',err)
 })
 
